@@ -20,7 +20,7 @@ robot.nd = 3;   % number of DoF
 syms p th z real
 syms p0 th0 z0  real
 syms pd thd zd  real
-syms m real
+syms m Iyy real
 
 q = [ p; th; z];
 qd= [pd; thd; zd];
@@ -38,7 +38,7 @@ com = [ zeros(1,3);
         zeros(1,3)];
 iner = [  zeros(1,3);     % massless    
           zeros(1,3);     % massless
-          zeros(1,3)];    % point mass
+          0 Iyy 0];    % point mass
             
 jtype = {'Px', 'Ry', 'Pz'};
 jpos= [ zeros(1,3);          % trivial
