@@ -26,26 +26,26 @@ if ~flagReduced
     
     % Rigid Body Params
     mass_ = [   params_.m(1);       % wheel mass
-        params_.m(2);       % link mass
-        params_.m(3);       % link mass
-        params_.m(4)];      % link mass
+                params_.m(2);       % link mass
+                params_.m(3);       % link mass
+                params_.m(4)];      % link mass
     
     com_ = [    zeros(1,3);         % wheel
-        params_.L(2)/2 0 0;
-        params_.L(3)/2 0 0
-        params_.L(4) 0 params_.L(5)];
+                0 0 params_.L(2)/2;
+                0 0 params_.L(3)/2 
+                params_.L(4) 0 params_.L(5)];
     
     iner_ = [   0 params_.I(1) 0;
-        0 params_.I(2) 0;
-        0 params_.I(3) 0;
-        0 params_.I(4) 0];
+                0 params_.I(2) 0;
+                0 params_.I(3) 0;
+                0 params_.I(4) 0];
     
     jtype_ = {'Px', 'Ry', 'Ry', 'Ry'};
     
     jpos_ = [   zeros(1,3);                 % world to the wheel
-        zeros(1,3);                 % wheel to the 1st link
-        params_.L(2) 0 0;           % 1st link to the 2nd
-        params_.L(3) 0 0];          % 2nd link to the 3rd
+                zeros(1,3);                 % wheel to the 1st link
+                0 0 params_.L(2) ;          % 1st link to the 2nd
+                0 0 params_.L(3)];          % 2nd link to the 3rd
     
 else
     %% Reduced Model
@@ -65,30 +65,30 @@ else
     
     % Rigid Body Params
     mass_ = [   0;                  % dummy joint
-        params_.m(1);       % wheel mass
-        params_.m(2);       % link mass
-        params_.m(3);
-        params_.m(4)];
+                params_.m(1);       % wheel mass
+                params_.m(2);       % link mass
+                params_.m(3);
+                params_.m(4)];
     
     com_ = [    zeros(1,3);         % trivial
-        zeros(1,3);         % wheel
-        params_.L(2)/2 0 0;
-        params_.L(3)/2 0 0;
-        params_.L(4) 0 params_.L(5)];
+                zeros(1,3);         % wheel
+                0 0 params_.L(2)/2;
+                0 0 params_.L(3)/2 
+                params_.L(4) 0 params_.L(5)];
     
     iner_ = [   zeros(1,3);
-        0 params_.I(1) 0;
-        0 params_.I(2) 0;
-        0 params_.I(3) 0;
-        0 params_.I(4) 0];
+                0 params_.I(1) 0;
+                0 params_.I(2) 0;
+                0 params_.I(3) 0;
+                0 params_.I(4) 0];
     
     jtype_ = {'Px', 'Ry', 'Ry', 'Ry', 'Ry'};
     
     jpos_ = [   zeros(1,3);         % world to dummy base
-        zeros(1,3);         % dummy base to the wheel
-        zeros(1,3);         % wheel to the 1st link
-        params_.L(2) 0 0;   % 1st link to the 2nd
-        params_.L(3) 0 0];  % 2nd link to the 3rd
+                zeros(1,3);         % dummy base to the wheel
+                zeros(1,3);                 % wheel to the 1st link
+                0 0 params_.L(2) ;          % 1st link to the 2nd
+                0 0 params_.L(3)];          % 2nd link to the 3rd
 end
 
 %% Rigid Body mass, I, Xtree

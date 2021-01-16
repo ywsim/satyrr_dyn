@@ -1,7 +1,15 @@
-%% Init
-clear; clc; close all;
+%% Dynamics
+% This documents generates two different dynamics model depending on the
+% flagReduced. 
+% unreduced(false): [qx, q1, q2, q3] of satyrr (q1 is absolute)
+% reduced(true): starts with [qx, qw, q1, q2, q3] -> [qx, qa1, q2, q3] (qa1: absolute) 
+% 
+% The unreduced model requires manual modification such as adding Iw/R^2.
+% Result (main_reduced_vs_unreduced) shows that Coriolis terms of two
+% models are different. 
+clear; clc; 
 flagWriteFcn = true;
-flagReduced = false;    % reduce the model
+flagReduced = true;    % reduce the model
 
 %% Generate Rigid Body System
 robot = gen_satyrr_full(flagReduced );
@@ -20,10 +28,6 @@ file_name = ['robot_dynamics_', suffix, '.mat'];
 save(file_name, 'robot');
 cd ..
 disp('- saved robot dynamics')
-
-
-
-
 
 %% Generate Contact Jacobian
 % robot = gen_contact(robot, flagWriteFcn);
